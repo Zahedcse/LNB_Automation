@@ -26,6 +26,8 @@ class TestOne:
         driver.implicitly_wait(5)
 
         wait = WebDriverWait(driver, 30)
+        """Registration starts here"""
+
         driver.find_element(By.NAME, "firstname").send_keys('Zahed')
         driver.find_element(By.NAME, "lastname").send_keys('Alam')
         driver.find_element(By.NAME, "email").send_keys('zahedalam1002@gmail.com')
@@ -50,12 +52,13 @@ class TestOne:
         driver.find_element(By.XPATH, "//button[text()='Create Account']").click()
         # success_text = driver.find_element(By.XPATH, "//div[@id='notistack-snackbar']").text
         # assert success_text in "There is an user found with same email or username"
+        """Registration ends here"""
 
         '''Forget Password section'''
-        driver.find_element(By.CSS_SELECTOR, "form[name='SigninForm'] > span").click()
-        driver.find_element(By.NAME, "email").send_keys("zahedalam1001@gmail.com")
-        driver.find_element(By.CSS_SELECTOR, 'form[name="forgotPasswordForm"] > button[type="submit"]').click()
-        time.sleep(2)
+        # driver.find_element(By.CSS_SELECTOR, "form[name='SigninForm'] > span").click()
+        # driver.find_element(By.NAME, "email").send_keys("zahedalam1001@gmail.com")
+        # driver.find_element(By.CSS_SELECTOR, 'form[name="forgotPasswordForm"] > button[type="submit"]').click()
+        # time.sleep(2)
 
         """Login Start"""
         driver.find_element(By.XPATH, "//span[@class='formbottomlink']").click()
@@ -77,6 +80,7 @@ class TestOne:
             driver.save_screenshot("error_screenshot.png")
         """Login ends here"""
 
+        """Search Functionality starts here"""
         driver.find_element(By.CSS_SELECTOR, ".bannerinputclass").send_keys('LE1')
         # driver.find_element(By.XPATH, "//button[@title='Open']//*[name()='svg']").click()
         # driver.find_element(By.CSS_SELECTOR, "li#combo-box-demo-option-0 > div").click()
@@ -84,12 +88,15 @@ class TestOne:
         wait.until(EC.presence_of_element_located((By.XPATH, "(//p[@class='opacity-40'])[1]")))
         text = driver.find_element(By.XPATH, "(//p[@class='opacity-40'])[1]").text
         print(text)
+
+        """Search starts here"""
         driver.find_element(By.XPATH, "//button[normalize-space()='Continue To Next Step']").click()
 
+        """Clicking on the checkboxes"""
         driver.find_element(By.XPATH, "(//input[@aria-label='Select row'])[2]").click()
         driver.find_element(By.XPATH, "(//input[@aria-label='Select row'])[8]").click()
         driver.find_element(By.XPATH, "(//input[@aria-label='Select row'])[12]").click()
-
+        """Go to Next step"""
         driver.find_element(By.XPATH, "(//button[normalize-space()='Continue To Next Step'])[1]").click()
 
         # wait = WebDriverWait(driver, 10)
@@ -99,11 +106,12 @@ class TestOne:
         driver.find_element(By.NAME, "subject").click()
         driver.find_element(By.NAME, "subject").send_keys("HelloTemplate")
 
-        # Upload
+        """upload section"""
         driver.find_element(By.XPATH, "//button[normalize-space()='Upload']").click()
         driver.find_element(By.ID, "outlined-basic").click()
         driver.find_element(By.ID, "outlined-basic").send_keys("Hellw_pdf")
-        # File Upload Using Actions
+
+        """File Upload Using Actions"""
         driver.find_element(By.XPATH, "//label[@id='label-file-upload']").click()
         time.sleep(2)
         keyboard = Controller()
@@ -129,7 +137,7 @@ class TestOne:
         # assert delete_msg in "Deleted Successfully"
         time.sleep(2)
 
-        # Add sender Information part
+        """Add sender Information part"""
 
         # driver.find_element(By.XPATH, "(//span[@class='mx-2 text-[#23A3FF] cursor-pointer'])[1]").click()
         # time.sleep(5)
@@ -207,12 +215,13 @@ class TestOne:
         # driver.find_element(By.XPATH, "//input[@area-activedescendent='combo-box-demo-option-0']").click()
         driver.find_element(By.XPATH, "//button[@value='Send']").click()
         time.sleep(3)
-        # Chechkoutr=
+
+        """Checkout Page"""
         driver.find_element(By.CSS_SELECTOR, "div#__next span > button").click()
 
-        wait.until(EC.visibility_of_element_located((By.ID, "email")))
-        driver.find_element(By.ID, "email").send_keys("Zahedalam1001@gmail.com")
-        driver.find_element(By.ID, "shipping-name").send_keys("Zahed")
+        # wait.until(EC.visibility_of_element_located((By.ID, "email")))
+        driver.find_element(By.XPATH, "//input[@id='email']").send_keys("Zahedalam1001@gmail.com")
+        driver.find_element(By.XPATH, "//input[@id='shipping-name']").send_keys("Zahed")
         driver.find_element(By.ID, "shipping-street").send_keys("Dhaka, Bangladesh")
         driver.find_element(By.ID, "shipping-zip").send_keys("1212")
         time.sleep(2)
@@ -230,6 +239,7 @@ class TestOne:
         driver.find_element(By.XPATH, "section button").click()
         time.sleep(2)
 
+        """Assertion of Total company and Amount"""
         # Assert Total Number of Company and Prices
         # total_company_element = driver.find_element(By.XPATH, "//p[normalize-space()='2']")
         # net_price_element = driver.find_element(By.XPATH, "(//p[normalize-space()='£ 1 * 2'])[1]")
@@ -250,3 +260,9 @@ class TestOne:
         # assert net_price == expected_net_price, f"Net price assertion failed: Expected {expected_net_price}, but got {net_price}"
         # assert vat == expected_vat, f"VAT assertion failed: Expected {expected_vat}, but got {vat}"
         # assert total_price == expected_total_price, f"Total price assertion failed: Expected {expected_total_price}, but got {total_price}"
+
+
+
+
+
+
